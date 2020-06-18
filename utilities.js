@@ -30,7 +30,7 @@ function getPowerState() {
         return PowerStates.BATT;
     }
 
-};
+}
 
 function getMainButtonIcon() {
 
@@ -38,11 +38,11 @@ function getMainButtonIcon() {
 
     if (getPowerState() === PowerStates.AC) {
 
-        iconImageRelativePath = '/icons/charging.svg';
+        iconImageRelativePath = '/icons/charging_24.png';
     }
     else {
 
-        iconImageRelativePath = '/icons/battery.svg';
+        iconImageRelativePath = '/icons/battery_24.png';
 
     }
 

@@ -8,16 +8,13 @@ const Lang = imports.lang;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Utilities = Me.imports.utilities;
+const PowerTweaks = Me.imports.powerTweaks;
 
 let text;
 let button;
 let _buttonIcon;
-
 let _handle;
 let _mainIndicator;
-let _animationsOriginalState;
-let _cursorBlinkOriginalState;
-let _clockShowSeconds;
 let _lastPowerState;
 
 
@@ -52,24 +49,9 @@ const MainIndicator = new Lang.Class({
 
         this.add_child(_buttonIcon);
 
-    },
-
-
-
-});
-
-function getDesktopInterfaceSettings() {
-
-    const schema = Gio.SettingsSchemaSource.get_default().lookup('org.gnome.desktop.interface', false);
-
-    if (schema) {
-
-        return new Gio.Settings({ settings_schema: schema });
-
     }
 
-}
-
+});
 
 function OnPowerPropertiesChanged() {
 
@@ -82,7 +64,7 @@ function OnPowerPropertiesChanged() {
 
     _lastPowerState = Utilities.getPowerState();
 
-    const diSettings = getDesktopInterfaceSettings();
+    PowerTweaks.tweakSettings(_lastPowerState);
 
     Utilities.logMsg("Refreshing icon, on power management changed");
 
@@ -90,25 +72,7 @@ function OnPowerPropertiesChanged() {
 
     Utilities.logMsg("Refreshing icon completed");
 
-    if (diSettings) {
-
-        // Is the system on AC
-        var isOnAc = _lastPowerState === Utilities.PowerStates.AC;
-
-        // Enable/Disable animations
-        diSettings.set_boolean('enable-animations', isOnAc);
-
-        // Enable/Disable cursor blink
-        diSettings.set_boolean('cursor-blink', isOnAc);
-
-        // Enable/Disable clock show seconds
-        diSettings.set_boolean('clock-show-seconds', isOnAc);
-
-    }
-
 }
-
-
 
 function init() {
 
@@ -122,20 +86,16 @@ function enable() {
 
     Utilities.logMsg("Enabling application");
 
+    _handle = Main.panel.statusArea.aggregateMenu._power._proxy.connect('g-properties-changed', OnPowerPropertiesChanged);
+
+    // Capture the initial settings
+    PowerTweaks.captureInitialSettings();
+
     // Main indicator
     _mainIndicator = new MainIndicator();
 
+    // store the initial power state
     _lastPowerState = Utilities.getPowerState();
-
-    const diSettings = getDesktopInterfaceSettings();
-
-    _animationsOriginalState = diSettings.get_boolean('enable-animations');
-
-    _cursorBlinkOriginalState = diSettings.get_boolean('cursor-blink');
-
-    _clockShowSeconds = diSettings.get_boolean('clock-show-seconds');
-
-    _handle = Main.panel.statusArea.aggregateMenu._power._proxy.connect('g-properties-changed', OnPowerPropertiesChanged);
 
     Main.panel._addToPanelBox('MainIndicator', _mainIndicator, 1, Main.panel._rightBox);
 
@@ -149,19 +109,10 @@ function disable() {
 
     Utilities.logMsg("Exiting application");
 
-    const diSettings = getDesktopInterfaceSettings();
-
-    if (diSettings) {
-
-        diSettings.set_boolean('enable-animations', _animationsOriginalState);
-
-        diSettings.set_boolean('cursor-blink', _cursorBlinkOriginalState);
-
-        diSettings.set_boolean('clock-show-seconds', _clockShowSeconds);
-
-    }
-
     Main.panel.statusArea.aggregateMenu._power._proxy.disconnect(_handle);
+
+    // Restore the initial settings
+    PowerTweaks.restoreInitialSettings();
 
     _mainIndicator.destroy();
 
