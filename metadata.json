@@ -1,0 +1,10 @@
+{
+  "description": "Power Tweaks",
+  "name": "Power Tweaks",
+  "shell-version": [
+    "3.36"
+  ],
+  "url": "https://github.com/jbdrthapa/power-tweaks",
+  "uuid": "power-tweaks@jbdrthapa.github.com",
+  "version": 1
+}
