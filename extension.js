@@ -11,6 +11,7 @@ const Logger = Me.imports.logger;
 const Utilities = Me.imports.utilities;
 const PowerTweaks = Me.imports.powerTweaks;
 
+
 let text;
 let button;
 let _buttonIcon;
