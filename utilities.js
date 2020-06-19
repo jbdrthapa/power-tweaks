@@ -2,21 +2,15 @@
 const St = imports.gi.St;
 const Gio = imports.gi.Gio;
 
-const ApplicationName = "Power Tweaks";
-
 const Main = imports.ui.main;
 const UPower = imports.ui.status.power.UPower;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
+const Logger = Me.imports.logger;
 
 
 var PowerStates = {
     AC: 'AC',
     BATT: 'BATT'
-}
-
-function logMsg(logMessage) {
-
-    log(`${ApplicationName} : ${logMessage}`);
 }
 
 function getPowerState() {
@@ -50,7 +44,7 @@ function getMainButtonIcon() {
 
     var iconPath = `${Me.path}${iconImageRelativePath}`;
 
-    logMsg(`Icon Path: ${iconPath}`);
+    Logger.logMsg(`Icon Path: ${iconPath}`);
 
     icon.gicon = Gio.icon_new_for_string(iconPath);
 

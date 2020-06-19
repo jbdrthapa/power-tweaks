@@ -7,6 +7,7 @@ const PopupMenu = imports.ui.popupMenu;
 const Lang = imports.lang;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
+const Logger = Me.imports.logger;
 const Utilities = Me.imports.utilities;
 const PowerTweaks = Me.imports.powerTweaks;
 
@@ -33,7 +34,7 @@ const MainIndicator = new Lang.Class({
 
         let menuItem = new PopupMenu.PopupMenuItem('Menu Item');
 
-        menuItem.actor.connect('button-press-event', function () { Main.notify('Example notification', 'Hello world!!!') });
+        menuItem.connect('button-press-event', function () { Main.notify('Example notification', 'Hello world!!!') });
 
         this.menu.addMenuItem(menuItem);
 
@@ -66,25 +67,25 @@ function OnPowerPropertiesChanged() {
 
     PowerTweaks.tweakSettings(_lastPowerState);
 
-    Utilities.logMsg("Refreshing icon, on power management changed");
+    Logger.logMsg("Refreshing icon, on power management changed");
 
     _mainIndicator.refreshButtonUI();
 
-    Utilities.logMsg("Refreshing icon completed");
+    Logger.logMsg("Refreshing icon completed");
 
 }
 
 function init() {
 
-    Utilities.logMsg(`Initializing ${Me.metadata.name} Version ${Me.metadata.version}`);
+    Logger.logMsg(`Initializing ${Me.metadata.name} Version ${Me.metadata.version}`);
 
 
-    Utilities.logMsg("Application initialized");
+    Logger.logMsg("Application initialized");
 }
 
 function enable() {
 
-    Utilities.logMsg("Enabling application");
+    Logger.logMsg("Enabling application");
 
     _handle = Main.panel.statusArea.aggregateMenu._power._proxy.connect('g-properties-changed', OnPowerPropertiesChanged);
 
@@ -101,13 +102,13 @@ function enable() {
 
     OnPowerPropertiesChanged();
 
-    Utilities.logMsg("Application enabled");
+    Logger.logMsg("Application enabled");
 
 }
 
 function disable() {
 
-    Utilities.logMsg("Exiting application");
+    Logger.logMsg("Exiting application");
 
     Main.panel.statusArea.aggregateMenu._power._proxy.disconnect(_handle);
 
@@ -116,6 +117,6 @@ function disable() {
 
     _mainIndicator.destroy();
 
-    Utilities.logMsg("Application exited");
+    Logger.logMsg("Application exited");
 
 }
