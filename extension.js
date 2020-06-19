@@ -34,7 +34,7 @@ const MainIndicator = new Lang.Class({
 
         let menuItem = new PopupMenu.PopupMenuItem('Menu Item');
 
-        menuItem.connect('button-press-event', function () { Main.notify('Example notification', 'Hello world!!!') });
+        menuItem.connect('button-press-event', function () { Utilities.notify("Message", "Details", "avatar-default") });
 
         this.menu.addMenuItem(menuItem);
 
@@ -72,6 +72,8 @@ function OnPowerPropertiesChanged() {
     _mainIndicator.refreshButtonUI();
 
     Logger.logMsg("Refreshing icon completed");
+
+    Utilities.notify("Notification", `System is running on : ${_lastPowerState}`, "avatar-default")
 
 }
 

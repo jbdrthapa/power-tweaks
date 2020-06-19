@@ -3,6 +3,7 @@ const St = imports.gi.St;
 const Gio = imports.gi.Gio;
 
 const Main = imports.ui.main;
+const MessageTray = imports.ui.messageTray;
 const UPower = imports.ui.status.power.UPower;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.logger;
@@ -51,3 +52,16 @@ function getMainButtonIcon() {
     return icon;
 
 };
+
+function notify(title, message, iconName) {
+
+    var source = new MessageTray.Source(title, iconName);
+
+    var notification = new MessageTray.Notification(source, title, message);
+
+    notification.setTransient(true);
+
+    Main.messageTray.add(source);
+
+    source.pushNotification(notification);
+}
