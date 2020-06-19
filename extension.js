@@ -48,8 +48,6 @@ function enable() {
 
     Logger.logMsg("Enabling application");
 
-    _handle = Main.panel.statusArea.aggregateMenu._power._proxy.connect('g-properties-changed', OnPowerPropertiesChanged);
-
     // Capture the initial settings
     PowerTweaks.captureInitialSettings();
 
@@ -59,9 +57,11 @@ function enable() {
     // store the initial power state
     _lastPowerState = PowerTweaks.getPowerState();
 
-    Main.panel._addToPanelBox('MainIndicator', _mainIndicator, 1, Main.panel._rightBox);
+    Main.panel._addToPanelBox('MainIndicator', _mainIndicator, 1, Main.panel._centerBox);
 
     OnPowerPropertiesChanged();
+
+    _handle = Main.panel.statusArea.aggregateMenu._power._proxy.connect('g-properties-changed', OnPowerPropertiesChanged);
 
     Logger.logMsg("Application enabled");
 

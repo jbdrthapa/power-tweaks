@@ -42,6 +42,29 @@ function getDesktopInterfaceSettings() {
 
 }
 
+function getTweakSettingCurrentState(setting) {
+
+    const diSettings = getDesktopInterfaceSettings();
+
+    var settingValue = diSettings.get_boolean(setting);
+
+    Logger.logMsg(`Getting the current state of setting : ${setting} value: ${settingValue}`);
+
+    return settingValue;
+
+}
+
+function setTweakSettingCurrentState(setting, settingValue) {
+
+    const diSettings = getDesktopInterfaceSettings();
+
+    diSettings.set_boolean(setting, settingValue)
+
+    Logger.logMsg(`Setting the current state of setting : ${setting} value: ${settingValue}`);
+
+}
+
+
 function getMainButtonIcon() {
 
     let iconImageRelativePath;
