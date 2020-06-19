@@ -10,6 +10,9 @@ const PowerTweaks = Me.imports.powerTweaks;
 const Utilities = Me.imports.utilities;
 
 let _buttonIcon;
+let _itemEnableAnimations;
+let _itemCursorBlink;
+let _itemClockShowSeconds;
 
 
 var MainIndicator = new Lang.Class({
@@ -33,28 +36,35 @@ var MainIndicator = new Lang.Class({
         // subMenu.menu.addMenuItem(item);
 
         // Enable Animations
-        var enableAnimationsInitValue = PowerTweaks.getTweakSettingCurrentState("enable-animations");
-        let itemEnableAnimations = new PopupMenu.PopupSwitchMenuItem(_("Enable Animations"), enableAnimationsInitValue);
-        itemEnableAnimations.connect('toggled', Lang.bind(this, function () { PowerTweaks.setTweakSettingCurrentState("enable-animations", itemEnableAnimations.state) }));
-        subMenu.menu.addMenuItem(itemEnableAnimations);
+        let enableAnimationsInitValue = PowerTweaks.getTweakSettingCurrentState("enable-animations");
+        _itemEnableAnimations = new PopupMenu.PopupSwitchMenuItem(_("Enable Animations"), enableAnimationsInitValue);
+        _itemEnableAnimations.connect('toggled', Lang.bind(this, function () { PowerTweaks.setTweakSettingCurrentState("enable-animations", _itemEnableAnimations.state) }));
+        subMenu.menu.addMenuItem(_itemEnableAnimations);
 
         // Cursor Blink
-        var cursorBlinkInitValue = PowerTweaks.getTweakSettingCurrentState("cursor-blink");
-        let itemCursorBlink = new PopupMenu.PopupSwitchMenuItem(_("Cursor Blink"), cursorBlinkInitValue);
-        itemCursorBlink.connect('toggled', Lang.bind(this, function () { PowerTweaks.setTweakSettingCurrentState("cursor-blink", itemCursorBlink.state) }));
-        subMenu.menu.addMenuItem(itemCursorBlink);
+        let cursorBlinkInitValue = PowerTweaks.getTweakSettingCurrentState("cursor-blink");
+        _itemCursorBlink = new PopupMenu.PopupSwitchMenuItem(_("Cursor Blink"), cursorBlinkInitValue);
+        _itemCursorBlink.connect('toggled', Lang.bind(this, function () { PowerTweaks.setTweakSettingCurrentState("cursor-blink", _itemCursorBlink.state) }));
+        subMenu.menu.addMenuItem(_itemCursorBlink);
 
         // Clock Show Seconds
-        var clockShowSecondsInitValue = PowerTweaks.getTweakSettingCurrentState("clock-show-seconds");
-        let itemClockShowSeconds = new PopupMenu.PopupSwitchMenuItem(_("Clock Show Seconds"), clockShowSecondsInitValue);
-        itemClockShowSeconds.connect('toggled', Lang.bind(this, function () { PowerTweaks.setTweakSettingCurrentState("clock-show-seconds", itemClockShowSeconds.state) }));
-        subMenu.menu.addMenuItem(itemClockShowSeconds);
+        let clockShowSecondsInitValue = PowerTweaks.getTweakSettingCurrentState("clock-show-seconds");
+        _itemClockShowSeconds = new PopupMenu.PopupSwitchMenuItem(_("Clock Show Seconds"), clockShowSecondsInitValue);
+        _itemClockShowSeconds.connect('toggled', Lang.bind(this, function () { PowerTweaks.setTweakSettingCurrentState("clock-show-seconds", _itemClockShowSeconds.state) }));
+        subMenu.menu.addMenuItem(_itemClockShowSeconds);
 
         // Separater Banner
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem("Power Tweaks"));
     },
 
+    refreshSettingsUI: function () {
 
+        var isOnAC = PowerTweaks.getPowerState() === PowerTweaks.PowerStates.AC;
+
+        _itemEnableAnimations.setToggleState(isOnAC);
+        _itemCursorBlink.setToggleState(isOnAC);
+        _itemClockShowSeconds.setToggleState(isOnAC);
+    },
 
     refreshButtonUI: function () {
 

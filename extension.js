@@ -11,20 +11,15 @@ const Indicator = Me.imports.indicator;
 
 let _handle;
 let _mainIndicator;
-let _lastPowerState;
+let _powerState;
 
 function OnPowerPropertiesChanged() {
 
-    // Check and make sure there is a state change
-    if (_lastPowerState === PowerTweaks.getPowerState()) {
+    _powerState = PowerTweaks.getPowerState();
 
-        return;
+    Logger.logMsg(`Power state changed to : ${_powerState}`)
 
-    }
-
-    _lastPowerState = PowerTweaks.getPowerState();
-
-    PowerTweaks.tweakSettings(_lastPowerState);
+    PowerTweaks.tweakSettings(_powerState);
 
     Logger.logMsg("Refreshing icon, on power management changed");
 
@@ -32,7 +27,13 @@ function OnPowerPropertiesChanged() {
 
     Logger.logMsg("Refreshing icon completed");
 
-    Utilities.notify("Notification", `System is running on : ${_lastPowerState}`, "avatar-default")
+    Logger.logMsg("Refreshing settings UI");
+
+    _mainIndicator.refreshSettingsUI();
+
+    Logger.logMsg("Refreshing settings UI completed");
+
+    Utilities.notify("Power state changed", `Power state changed to : ${_powerState}`, "battery")
 
 }
 
