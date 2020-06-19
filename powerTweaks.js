@@ -1,6 +1,8 @@
+const St = imports.gi.St;
 const Gio = imports.gi.Gio;
-const Main = imports.ui.main;
 
+const Main = imports.ui.main;
+const UPower = imports.ui.status.power.UPower;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Utilities = Me.imports.utilities;
 const Logger = Me.imports.logger;
@@ -8,6 +10,24 @@ const Logger = Me.imports.logger;
 let _animationsOriginalState;
 let _cursorBlinkOriginalState;
 let _showSecondsOriginalState;
+
+var PowerStates = {
+    AC: 'AC',
+    BATT: 'BATT'
+}
+
+function getPowerState() {
+
+    let isOnAC = Main.panel.statusArea.aggregateMenu._power._proxy.State !== UPower.DeviceState.DISCHARGING;
+
+    if (isOnAC === true) {
+        return PowerStates.AC;
+    }
+    else {
+        return PowerStates.BATT;
+    }
+
+}
 
 
 function getDesktopInterfaceSettings() {
@@ -21,6 +41,32 @@ function getDesktopInterfaceSettings() {
     }
 
 }
+
+function getMainButtonIcon() {
+
+    let iconImageRelativePath;
+
+    if (getPowerState() === PowerStates.AC) {
+
+        iconImageRelativePath = '/icons/charging_24.png';
+    }
+    else {
+
+        iconImageRelativePath = '/icons/battery_24.png';
+
+    }
+
+    let icon = new St.Icon({ style_class: 'system-status-icon' });
+
+    let iconPath = `${Me.path}${iconImageRelativePath}`;
+
+    Logger.logMsg(`Icon Path: ${iconPath}`);
+
+    icon.gicon = Gio.icon_new_for_string(iconPath);
+
+    return icon;
+
+};
 
 function captureInitialSettings() {
 
@@ -86,7 +132,7 @@ function tweakSettings(powerState) {
 
     if (diSettings) {
 
-        var isOnAc = powerState === Utilities.PowerStates.AC;
+        var isOnAc = powerState === PowerStates.AC;
 
         // Enable/Disable animations
         diSettings.set_boolean('enable-animations', isOnAc);
@@ -105,4 +151,3 @@ function tweakSettings(powerState) {
     }
 
 }
-
