@@ -3,6 +3,7 @@ const St = imports.gi.St;
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 const Lang = imports.lang;
+const GObject = imports.gi.GObject;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.logger;
@@ -14,13 +15,11 @@ let _itemEnableAnimations;
 let _itemCursorBlink;
 let _itemClockShowSeconds;
 
+var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.Button {
 
-var MainIndicator = new Lang.Class({
-    Name: 'Main.indicator',
-    Extends: PanelMenu.Button,
+    _init() {
 
-    _init: function () {
-        this.parent(0.0);
+        super._init(0.0);
 
         this.style_class = 'panel-button';
 
@@ -55,18 +54,19 @@ var MainIndicator = new Lang.Class({
 
         // Separater Banner
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem("Power Tweaks"));
-    },
 
-    refreshSettingsUI: function () {
+    }
+
+    refreshSettingsUI() {
 
         var isOnAC = PowerTweaks.getPowerState() === PowerTweaks.PowerStates.AC;
 
         _itemEnableAnimations.setToggleState(isOnAC);
         _itemCursorBlink.setToggleState(isOnAC);
         _itemClockShowSeconds.setToggleState(isOnAC);
-    },
+    }
 
-    refreshButtonUI: function () {
+    refreshButtonUI() {
 
         this.remove_child(_buttonIcon);
 
