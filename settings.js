@@ -1,5 +1,5 @@
 const Gio = imports.gi.Gio;
-const Me = imports.misc.extensionUtils.getCurrentExtension();;
+const Me = imports.misc.extensionUtils.getCurrentExtension();
 
 let _gschema = Gio.SettingsSchemaSource.new_from_directory(
     Me.dir.get_child('schemas').get_path(),
@@ -13,10 +13,16 @@ let _settings = new Gio.Settings({
 
 });
 
-var application = {
-    loggingEnabled: function () {
-        return getSetting('enable-logging');
-    }
+function loggingEnabled() {
+
+    return getSetting('enable-logging');
+
+}
+
+function ReactOnPMEvents() {
+
+    return getSetting('react-on-pm-events');
+
 }
 
 function getSetting(setting) {
@@ -24,4 +30,3 @@ function getSetting(setting) {
     return _settings.get_value(setting).deep_unpack();
 
 }
-

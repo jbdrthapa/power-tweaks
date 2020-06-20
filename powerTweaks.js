@@ -1,8 +1,9 @@
 const St = imports.gi.St;
 const Gio = imports.gi.Gio;
+const UPower = imports.gi.UPowerGlib;
 
 const Main = imports.ui.main;
-const UPower = imports.ui.status.power.UPower;
+
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Utilities = Me.imports.utilities;
 const Logger = Me.imports.logger;
@@ -28,7 +29,6 @@ function getPowerState() {
     }
 
 }
-
 
 function getDesktopInterfaceSettings() {
 

@@ -5,12 +5,12 @@ const ApplicationName = "Power Tweaks";
 
 function logMsg(logMessage) {
 
-    log(`Logging enabled: ${Settings.application.loggingEnabled.call()}`);
-
-    if (Settings.application.loggingEnabled.call() === false) {
+    if (Settings.loggingEnabled() === false) {
 
         return;
 
     }
+
     log(`${ApplicationName} : ${logMessage}`);
+
 }

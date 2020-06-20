@@ -5,6 +5,18 @@
     <!-- See also: https://developer.gnome.org/glib/stable/gvariant-format-strings.html -->
     <key name="enable-logging" type="b">
       <default>true</default>
+      <summary>Enable logging</summary>
+      <description>Enable logging of extension operations</description>
+    </key>
+    <key name="react-on-pm-events" type="b">
+      <default>true</default>
+      <summary>React on PM events</summary>
+      <description>Update settings on power management events</description>
+    </key>
+    <key name="header-glow-color" type="s">
+      <default>"#00ff00"</default>
+      <summary>Header Title Glow</summary>
+      <description>Header title glow color</description>
     </key>
   </schema>
 </schemalist>

@@ -3,6 +3,7 @@ const GLib = imports.gi.GLib;
 const Clutter = imports.gi.Clutter;
 const GObject = imports.gi.GObject;
 const AccountsService = imports.gi.AccountsService;
+const ByteArray = imports.byteArray;
 
 const Lang = imports.lang;
 const PopupMenu = imports.ui.popupMenu;
@@ -13,8 +14,10 @@ const Logger = Me.imports.logger;
 
 let _mainBox;
 let _avatar;
+let _hostname;
 
 var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.PopupBaseMenuItem {
+
 
     _init() {
 
@@ -27,6 +30,8 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
 
         _mainBox = new St.BoxLayout({ vertical: true, width: 300, height: 200 });
 
+        _hostname = this.executeCommand("hostname");
+
         // Create the header (Hostname and the Avatar Icon)
         this.createHeader();
 
@@ -34,12 +39,15 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
 
     }
 
+    executeCommand(command) {
+        return imports.byteArray.toString(GLib.spawn_command_line_sync(command)[1]);
+    }
+
     createHeader() {
 
-        // Hostname
-        let title = GLib.spawn_command_line_sync("hostname")[1].toString();
+        // Hostname in the header
         let headerBox = new St.BoxLayout({ width: 200 });
-        headerBox.add(new St.Label({ text: title, style: 'color:black;font-size:18px;font-weight:800;text-shadow: 0 0 3px #00FF00;' }), { expand: true });
+        headerBox.add(new St.Label({ text: _hostname, style: 'color:black;font-size:18px;font-weight:800;text-shadow: 0 0 3px #00FF00;' }), { expand: true });
 
         // User Avatar Icon
         let userManager = AccountsService.UserManager.get_default();
@@ -52,8 +60,9 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
         _mainBox.add(headerBox);
     }
 
-    refresh(){
-        
+    refresh() {
+
+        _hostname = this.executeCommand("hostname");
         _avatar.update();
 
     }

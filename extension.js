@@ -6,6 +6,7 @@ const Main = imports.ui.main;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.logger;
 const Utilities = Me.imports.utilities;
+const Settings = Me.imports.settings;
 const PowerTweaks = Me.imports.powerTweaks;
 const Indicator = Me.imports.indicator;
 
@@ -15,7 +16,14 @@ let _powerState;
 
 function OnPowerPropertiesChanged() {
 
+    // Check if it should react on power management events
+    if (Settings.ReactOnPMEvents() !== true) {
 
+        return;
+
+    }
+
+    // Check if the state before and after the change are the same
     if (_powerState === PowerTweaks.getPowerState()) {
 
         return;
