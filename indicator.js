@@ -9,6 +9,7 @@ const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.logger;
 const PowerTweaks = Me.imports.powerTweaks;
 const Utilities = Me.imports.utilities;
+const InfoMenuItem = Me.imports.infoMenuItem;
 
 let _buttonIcon;
 let _itemEnableAnimations;
@@ -26,6 +27,9 @@ var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.
         _buttonIcon = PowerTweaks.getMainButtonIcon();
 
         this.add_child(_buttonIcon);
+
+        let infoMenu = new InfoMenuItem.InfoMenuItem();
+        this.menu.addMenuItem(infoMenu);
 
         let subMenu = new PopupMenu.PopupSubMenuMenuItem(_("Settings Tweaks"));
         this.menu.addMenuItem(subMenu);
