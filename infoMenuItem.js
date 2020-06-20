@@ -16,7 +16,12 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
 
     _init() {
 
-        super._init();
+        super._init({
+            reactive: false,
+            activate: false,
+            hover: false,
+            can_focus: false,
+        });
 
         this._mainBox = new St.BoxLayout({ vertical: true, width: 300, height: 200 });
 
