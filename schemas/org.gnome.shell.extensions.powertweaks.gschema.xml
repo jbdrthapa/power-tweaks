@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.powertweaks" path="/org/gnome/shell/extensions/powertweaks/">
+    <!-- The key type "a{sb}" describes a dictionary of string-boolean pairs -->
+    <!-- See also: https://developer.gnome.org/glib/stable/gvariant-format-strings.html -->
+    <key name="enable-logging" type="b">
+      <default>true</default>
+    </key>
+  </schema>
+</schemalist>
