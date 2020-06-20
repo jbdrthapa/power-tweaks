@@ -13,11 +13,18 @@ var SettingMenuItem = GObject.registerClass(class SettingMenuItem extends PopupM
 
     _init(caption, setting) {
 
-        let initialValue = PowerTweaks.getTweakSettingCurrentState(setting);
+        let initialValue = PowerTweaks.getCurrentState(setting);
 
         super._init(_(caption), initialValue);
 
-        this.connect('toggled', Lang.bind(this, function () { PowerTweaks.setTweakSettingCurrentState(setting, this.state) }));
+        this.connect('toggled', Lang.bind(this, function () { PowerTweaks.setCurrentState(setting, this.state) }));
+    }
+
+    refresh() {
+
+        var isOnAC = PowerTweaks.getPowerState() === PowerTweaks.PowerStates.AC;
+
+        this.setToggleState(isOnAC);
     }
 
 });

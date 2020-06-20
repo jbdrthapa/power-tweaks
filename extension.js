@@ -26,7 +26,7 @@ function OnPowerPropertiesChanged() {
 
     Logger.logMsg(`Power state changed to : ${_powerState}`)
 
-    PowerTweaks.tweakSettings(_powerState);
+    PowerTweaks.refreshSettings();
 
     Logger.logMsg("Refreshing icon, on power management changed");
 
@@ -64,7 +64,7 @@ function enable() {
 
     // Refresh all data
     _mainIndicator.connect('button-press-event', _refreshAllData);
-    
+
     // Add main indicator to the center box
     Main.panel._addToPanelBox('MainIndicator', _mainIndicator, 1, Main.panel._centerBox);
 
@@ -91,7 +91,7 @@ function disable() {
 
 }
 
-function _refreshAllData(){
+function _refreshAllData() {
 
     _mainIndicator.refreshInfoUI();
 

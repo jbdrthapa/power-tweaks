@@ -1,9 +1,6 @@
-const St = imports.gi.St;
-
+const GObject = imports.gi.GObject;
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
-const Lang = imports.lang;
-const GObject = imports.gi.GObject;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.logger;
@@ -61,11 +58,9 @@ var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.
 
     refreshSettingsUI() {
 
-        var isOnAC = PowerTweaks.getPowerState() === PowerTweaks.PowerStates.AC;
-
-        _itemEnableAnimations.setToggleState(isOnAC);
-        _itemCursorBlink.setToggleState(isOnAC);
-        _itemClockShowSeconds.setToggleState(isOnAC);
+        _itemEnableAnimations.refresh();
+        _itemCursorBlink.refresh();
+        _itemClockShowSeconds.refresh();
     }
 
     refreshButtonUI() {

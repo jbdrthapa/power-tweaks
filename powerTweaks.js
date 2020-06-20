@@ -42,7 +42,7 @@ function getDesktopInterfaceSettings() {
 
 }
 
-function getTweakSettingCurrentState(setting) {
+function getCurrentState(setting) {
 
     const diSettings = getDesktopInterfaceSettings();
 
@@ -54,7 +54,7 @@ function getTweakSettingCurrentState(setting) {
 
 }
 
-function setTweakSettingCurrentState(setting, settingValue) {
+function setCurrentState(setting, settingValue) {
 
     const diSettings = getDesktopInterfaceSettings();
 
@@ -95,26 +95,14 @@ function captureInitialSettings() {
 
     Logger.logMsg("Capturing initial power tweak settings");
 
-    const diSettings = getDesktopInterfaceSettings();
+    // Capture animations initial settings
+    _animationsOriginalState = getCurrentState('enable-animations');
 
-    if (diSettings) {
+    // Capture cursor blink initial settings
+    _cursorBlinkOriginalState = getCurrentState('cursor-blink');
 
-        // Capture animations initial settings
-        _animationsOriginalState = diSettings.get_boolean('enable-animations');
-
-        Logger.logMsg(`enable-animations : ${_animationsOriginalState}`);
-
-        // Capture cursor blink initial settings
-        _cursorBlinkOriginalState = diSettings.get_boolean('cursor-blink');
-
-        Logger.logMsg(`cursor-blink : ${_cursorBlinkOriginalState}`);
-
-        // Capture clock show seconds initial settings
-        _showSecondsOriginalState = diSettings.get_boolean('clock-show-seconds');
-
-        Logger.logMsg(`clock-show-seconds : ${_showSecondsOriginalState}`);
-
-    }
+    // Capture clock show seconds initial settings
+    _showSecondsOriginalState = getCurrentState('clock-show-seconds');
 
     Logger.logMsg("Capturing initial power tweak settings done");
 
@@ -124,53 +112,30 @@ function restoreInitialSettings() {
 
     Logger.logMsg("Restoring power tweak settings with initial values");
 
-    const diSettings = getDesktopInterfaceSettings();
+    // Restore animations to initial settings
+    setCurrentState('enable-animations', _animationsOriginalState);
 
-    if (diSettings) {
+    // Restore cursor blink to initial settings
+    setCurrentState('cursor-blink', _cursorBlinkOriginalState);
 
-        // Restore animations to initial settings
-        diSettings.set_boolean('enable-animations', _animationsOriginalState);
-
-        Logger.logMsg(`enable-animations : ${_animationsOriginalState}`);
-
-        // Restore cursor blink to initial settings
-        diSettings.set_boolean('cursor-blink', _cursorBlinkOriginalState);
-
-        Logger.logMsg(`cursor-blink : ${_cursorBlinkOriginalState}`);
-
-        // Restore clock show seconds to initial settings
-        diSettings.set_boolean('clock-show-seconds', _showSecondsOriginalState);
-
-        Logger.logMsg(`clock-show-seconds : ${_showSecondsOriginalState}`);
-
-    }
+    // Restore clock show seconds to initial settings
+    setCurrentState('clock-show-seconds', _showSecondsOriginalState);
 
     Logger.logMsg("Restoring power tweak settings with initial values done");
 
 }
 
-function tweakSettings(powerState) {
+function refreshSettings() {
 
-    const diSettings = getDesktopInterfaceSettings();
+    var isOnAc = getPowerState() === PowerStates.AC;
 
-    if (diSettings) {
+    // Set enable-animations
+    setCurrentState('enable-animations', isOnAc);
 
-        var isOnAc = powerState === PowerStates.AC;
+    // Set cursor-blink
+    setCurrentState('cursor-blink', isOnAc);
 
-        // Enable/Disable animations
-        diSettings.set_boolean('enable-animations', isOnAc);
-
-        Logger.logMsg(`enable-animations : ${isOnAc}`);
-
-        // Enable/Disable cursor blink
-        diSettings.set_boolean('cursor-blink', isOnAc);
-
-        Logger.logMsg(`cursor-blink : ${isOnAc}`);
-
-        // Enable/Disable clock show seconds
-        diSettings.set_boolean('clock-show-seconds', isOnAc);
-
-        Logger.logMsg(`clock-show-seconds : ${isOnAc}`);
-    }
+    // Set clock-show-seconds
+    setCurrentState('clock-show-seconds', isOnAc);
 
 }
