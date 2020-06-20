@@ -62,6 +62,10 @@ function enable() {
     // Main indicator
     _mainIndicator = new Indicator.MainIndicator();
 
+    // Refresh all data
+    _mainIndicator.connect('button-press-event', _refreshAllData);
+    
+    // Add main indicator to the center box
     Main.panel._addToPanelBox('MainIndicator', _mainIndicator, 1, Main.panel._centerBox);
 
     OnPowerPropertiesChanged();
@@ -84,5 +88,11 @@ function disable() {
     _mainIndicator.destroy();
 
     Logger.logMsg("Application exited");
+
+}
+
+function _refreshAllData(){
+
+    _mainIndicator.refreshInfoUI();
 
 }

@@ -15,6 +15,7 @@ let _buttonIcon;
 let _itemEnableAnimations;
 let _itemCursorBlink;
 let _itemClockShowSeconds;
+let _infoMenu;
 
 var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.Button {
 
@@ -28,8 +29,8 @@ var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.
 
         this.add_child(_buttonIcon);
 
-        let infoMenu = new InfoMenuItem.InfoMenuItem();
-        this.menu.addMenuItem(infoMenu);
+        _infoMenu = new InfoMenuItem.InfoMenuItem();
+        this.menu.addMenuItem(_infoMenu);
 
         let subMenu = new PopupMenu.PopupSubMenuMenuItem(_("Settings Tweaks"));
         this.menu.addMenuItem(subMenu);
@@ -58,6 +59,12 @@ var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.
 
         // Separater Banner
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem("Power Tweaks"));
+
+    }
+
+    refreshInfoUI(){
+
+        _infoMenu.refresh();
 
     }
 

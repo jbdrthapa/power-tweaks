@@ -11,6 +11,8 @@ const UserWidget = imports.ui.userWidget;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.logger;
 
+let _mainBox;
+let _avatar;
 
 var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.PopupBaseMenuItem {
 
@@ -23,12 +25,12 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
             can_focus: false,
         });
 
-        this._mainBox = new St.BoxLayout({ vertical: true, width: 300, height: 200 });
+        _mainBox = new St.BoxLayout({ vertical: true, width: 300, height: 200 });
 
         // Create the header (Hostname and the Avatar Icon)
         this.createHeader();
 
-        this.add_child(this._mainBox);
+        this.add_child(_mainBox);
 
     }
 
@@ -43,11 +45,17 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
         let userManager = AccountsService.UserManager.get_default();
         userManager.list_users();
         let user = userManager.get_user(GLib.get_user_name());
-        let avatar = new UserWidget.Avatar(user, { iconSize: 48 });
-        avatar.update();
-        headerBox.add(avatar);
+        _avatar = new UserWidget.Avatar(user, { iconSize: 48 });
+        _avatar.update();
+        headerBox.add(_avatar);
 
-        this._mainBox.add(headerBox);
+        _mainBox.add(headerBox);
+    }
+
+    refresh(){
+        
+        _avatar.update();
+
     }
 
 });
