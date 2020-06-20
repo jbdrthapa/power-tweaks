@@ -15,6 +15,13 @@ let _powerState;
 
 function OnPowerPropertiesChanged() {
 
+
+    if (_powerState === PowerTweaks.getPowerState()) {
+
+        return;
+
+    }
+
     _powerState = PowerTweaks.getPowerState();
 
     Logger.logMsg(`Power state changed to : ${_powerState}`)
@@ -54,9 +61,6 @@ function enable() {
 
     // Main indicator
     _mainIndicator = new Indicator.MainIndicator();
-
-    // store the initial power state
-    _lastPowerState = PowerTweaks.getPowerState();
 
     Main.panel._addToPanelBox('MainIndicator', _mainIndicator, 1, Main.panel._centerBox);
 
