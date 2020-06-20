@@ -10,6 +10,7 @@ const Logger = Me.imports.logger;
 const PowerTweaks = Me.imports.powerTweaks;
 const Utilities = Me.imports.utilities;
 const InfoMenuItem = Me.imports.infoMenuItem;
+const SettingMenuItem = Me.imports.settingMenuItem;
 
 let _buttonIcon;
 let _itemEnableAnimations;
@@ -35,34 +36,24 @@ var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.
         let subMenu = new PopupMenu.PopupSubMenuMenuItem(_("Settings Tweaks"));
         this.menu.addMenuItem(subMenu);
 
-        // item = new PopupMenu.PopupImageMenuItem(_("Animations"), "dialog-question");
-        // item.connect('activate', Lang.bind(this, function () { Utilities.notify("Message", "Details", "avatar-default") }));
-        // subMenu.menu.addMenuItem(item);
-
-        // Enable Animations
-        let enableAnimationsInitValue = PowerTweaks.getTweakSettingCurrentState("enable-animations");
-        _itemEnableAnimations = new PopupMenu.PopupSwitchMenuItem(_("Enable Animations"), enableAnimationsInitValue);
-        _itemEnableAnimations.connect('toggled', Lang.bind(this, function () { PowerTweaks.setTweakSettingCurrentState("enable-animations", _itemEnableAnimations.state) }));
+        // Setting enble-animations
+        _itemEnableAnimations = new SettingMenuItem.SettingMenuItem("Enable Animations", "enable-animations");
         subMenu.menu.addMenuItem(_itemEnableAnimations);
 
-        // Cursor Blink
-        let cursorBlinkInitValue = PowerTweaks.getTweakSettingCurrentState("cursor-blink");
-        _itemCursorBlink = new PopupMenu.PopupSwitchMenuItem(_("Cursor Blink"), cursorBlinkInitValue);
-        _itemCursorBlink.connect('toggled', Lang.bind(this, function () { PowerTweaks.setTweakSettingCurrentState("cursor-blink", _itemCursorBlink.state) }));
+        // Setting cursor-blink
+        _itemCursorBlink = new SettingMenuItem.SettingMenuItem("Cursor Blink", "cursor-blink");
         subMenu.menu.addMenuItem(_itemCursorBlink);
 
-        // Clock Show Seconds
-        let clockShowSecondsInitValue = PowerTweaks.getTweakSettingCurrentState("clock-show-seconds");
-        _itemClockShowSeconds = new PopupMenu.PopupSwitchMenuItem(_("Clock Show Seconds"), clockShowSecondsInitValue);
-        _itemClockShowSeconds.connect('toggled', Lang.bind(this, function () { PowerTweaks.setTweakSettingCurrentState("clock-show-seconds", _itemClockShowSeconds.state) }));
+        // Setting clock-show-seconds
+        _itemClockShowSeconds = new SettingMenuItem.SettingMenuItem("Clock Show Seconds", "clock-show-seconds");
         subMenu.menu.addMenuItem(_itemClockShowSeconds);
 
         // Separater Banner
-        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem("Power Tweaks"));
+        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem("POWER TWEAKS"));
 
     }
 
-    refreshInfoUI(){
+    refreshInfoUI() {
 
         _infoMenu.refresh();
 
