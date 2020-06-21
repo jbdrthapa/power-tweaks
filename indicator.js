@@ -27,9 +27,19 @@ var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.
 
         this.add_child(_buttonIcon);
 
+        // Populated menu items
+        this.populateMenuItems();
+
+    }
+
+    populateMenuItems() {
+
+        // Info Menu
         _infoMenu = new InfoMenuItem.InfoMenuItem();
         this.menu.addMenuItem(_infoMenu);
 
+
+        // Settings Tweaks submenu
         let subMenu = new PopupMenu.PopupSubMenuMenuItem(_("Settings Tweaks"));
         this.menu.addMenuItem(subMenu);
 
@@ -45,8 +55,8 @@ var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.
         _itemClockShowSeconds = new SettingMenuItem.SettingMenuItem("Clock Show Seconds", "clock-show-seconds");
         subMenu.menu.addMenuItem(_itemClockShowSeconds);
 
-        // Separater Banner
-        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem("POWER TWEAKS"));
+        // Separater BannerO
+        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem("Power Tweaks"));
 
     }
 

@@ -12,9 +12,17 @@ const UserWidget = imports.ui.userWidget;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.logger;
 
+const HeaderStyle = "color:black;font-size:18px;font-weight:800;text-shadow: 0 0 3px #00FF00;";
+const LabelStyle = "font-weight:600;width:100px;";
+const HostnameCommand = "hostname";
+const UptimeCommand = "uptime -p";
+
 let _mainBox;
+let _headerBox
+let _uptimeInfoBox;
 let _avatar;
 let _hostname;
+let _uptime;
 
 var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.PopupBaseMenuItem {
 
@@ -28,26 +36,48 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
             can_focus: false,
         });
 
-        _mainBox = new St.BoxLayout({ vertical: true, width: 300, height: 200 });
-
-        _hostname = this.executeCommand("hostname");
-
-        // Create the header (Hostname and the Avatar Icon)
-        this.createHeader();
+        _mainBox = new St.BoxLayout({ vertical: true, width: 300, height: 400 });
 
         this.add_child(_mainBox);
 
+        // Create the header (Hostname and the Avatar Icon)
+        this._createHeader();
+
+        this.refresh();
+
     }
 
-    executeCommand(command) {
+
+    /* Refresh all data displayed */
+
+    refresh() {
+
+        this._refreshHostname();
+
+        this._refreshUptime();
+
+        _avatar.update();
+
+    }
+
+    /* Execute command and return the output of the command run */
+
+    _executeCommand(command) {
         return imports.byteArray.toString(GLib.spawn_command_line_sync(command)[1]);
     }
 
-    createHeader() {
+    /* Create header */
+
+    _createHeader() {
 
         // Hostname in the header
-        let headerBox = new St.BoxLayout({ width: 200 });
-        headerBox.add(new St.Label({ text: _hostname, style: 'color:black;font-size:18px;font-weight:800;text-shadow: 0 0 3px #00FF00;' }), { expand: true });
+        _headerBox = new St.BoxLayout();
+        _headerBox.add(new St.Label({ style: HeaderStyle }), { expand: true });
+
+        // System uptime
+        _uptimeInfoBox = new St.BoxLayout();
+        _uptimeInfoBox.add(new St.Label({ text: "Uptime ", style: LabelStyle }));
+        _uptimeInfoBox.add(new St.Label());
 
         // User Avatar Icon
         let userManager = AccountsService.UserManager.get_default();
@@ -55,15 +85,36 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
         let user = userManager.get_user(GLib.get_user_name());
         _avatar = new UserWidget.Avatar(user, { iconSize: 48 });
         _avatar.update();
-        headerBox.add(_avatar);
+        _headerBox.add(_avatar);
 
-        _mainBox.add(headerBox);
+        _mainBox.add(_headerBox);
+        _mainBox.add(_uptimeInfoBox);
     }
 
-    refresh() {
+    /* Get control from a layout using index */
 
-        _hostname = this.executeCommand("hostname");
-        _avatar.update();
+    _getControlFromLayout(layout, index) {
+        let uptimeInfoChildren = layout.get_children();
+        return uptimeInfoChildren[index];
+    }
+
+    /* Refresh hostname */
+
+    _refreshHostname() {
+
+        _hostname = this._executeCommand(HostnameCommand);
+
+        this._getControlFromLayout(_headerBox, 0).set_text(_hostname);
+
+    }
+
+    /* Refresh system uptime data */
+
+    _refreshUptime() {
+
+        _uptime = this._executeCommand(UptimeCommand).replace("up ", "");
+
+        this._getControlFromLayout(_uptimeInfoBox, 1).set_text(_uptime);
 
     }
 
