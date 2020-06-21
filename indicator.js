@@ -55,7 +55,7 @@ var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.
         _itemClockShowSeconds = new SettingMenuItem.SettingMenuItem("Clock Show Seconds", "clock-show-seconds");
         subMenu.menu.addMenuItem(_itemClockShowSeconds);
 
-        // Separater BannerO
+        // Separater Banner
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem("Power Tweaks"));
 
     }
