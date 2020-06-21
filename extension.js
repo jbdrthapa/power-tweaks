@@ -9,6 +9,7 @@ const Utilities = Me.imports.utilities;
 const Settings = Me.imports.settings;
 const PowerTweaks = Me.imports.powerTweaks;
 const Indicator = Me.imports.indicator;
+const UPowerClient = Me.imports.upowerClient;
 
 let _handle;
 let _mainIndicator;
@@ -66,6 +67,12 @@ function enable() {
 
     // Capture the initial settings
     PowerTweaks.captureInitialSettings();
+
+    var upowerClient = new UPowerClient.UPowerClient();
+
+    Logger.logMsg(`System on battery: ${upowerClient.OnBattery}`);
+
+    Logger.logMsg(`System Lid is present: ${upowerClient.LidIsPresent}`);
 
     // Main indicator
     _mainIndicator = new Indicator.MainIndicator();
