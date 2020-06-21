@@ -12,8 +12,6 @@ const UserWidget = imports.ui.userWidget;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.logger;
 
-const HeaderStyle = "color:black;font-size:18px;font-weight:800;text-shadow: 0 0 3px #00FF00;";
-const LabelStyle = "font-weight:600;width:100px;";
 const HostnameCommand = "hostname";
 const UptimeCommand = "uptime -p";
 
@@ -72,11 +70,11 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
 
         // Hostname in the header
         _headerBox = new St.BoxLayout();
-        _headerBox.add(new St.Label({ style: HeaderStyle }), { expand: true });
+        _headerBox.add(new St.Label({ style_class: "hostname-header-style" }));
 
         // System uptime
         _uptimeInfoBox = new St.BoxLayout();
-        _uptimeInfoBox.add(new St.Label({ text: "Uptime ", style: LabelStyle }));
+        _uptimeInfoBox.add(new St.Label({ text: "Uptime ", style_class: "info-label-style" }));
         _uptimeInfoBox.add(new St.Label());
 
         // User Avatar Icon

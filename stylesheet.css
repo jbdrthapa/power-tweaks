@@ -1,0 +1,13 @@
+
+.hostname-header-style{
+    width:250px;
+    color:black;
+    font-size:18px;
+    font-weight:800;
+    text-shadow: 0 0 3px #00FF00;
+}
+
+.info-label-style{
+    font-weight:600;
+    width:100px;    
+}

@@ -49,8 +49,6 @@ function OnPowerPropertiesChanged() {
 
     Logger.logMsg("Refreshing settings UI completed");
 
-    Utilities.notify("Power state changed", `Power state changed to : ${_powerState}`, "battery")
-
 }
 
 function init() {
