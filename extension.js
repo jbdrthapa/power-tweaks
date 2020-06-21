@@ -10,6 +10,7 @@ const Settings = Me.imports.settings;
 const PowerTweaks = Me.imports.powerTweaks;
 const Indicator = Me.imports.indicator;
 const UPowerClient = Me.imports.upowerClient;
+const DisplayClient = Me.imports.displayClient;
 
 let _handle;
 let _mainIndicator;
@@ -71,6 +72,14 @@ function enable() {
     Logger.logMsg(`System on battery: ${upowerClient.OnBattery}`);
 
     Logger.logMsg(`System Lid is present: ${upowerClient.LidIsPresent}`);
+
+    var displayClient = new DisplayClient.DisplayClient();
+
+    Logger.logMsg(`System Brightness: ${displayClient.Brightness}`);
+
+    //let [new_percentage, connector] = displayClient.StepUp();
+
+    //Logger.logMsg(`New percentage : ${new_percentage} connected to : ${connector}`)
 
     // Main indicator
     _mainIndicator = new Indicator.MainIndicator();

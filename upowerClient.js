@@ -11,22 +11,28 @@ const destination = "org.freedesktop.UPower";
 
 const objectPath = "/org/freedesktop/UPower";
 
-const upowerInterface = '<node>\
-<interface name="org.freedesktop.UPower"> \
-    <property name="OnBattery" type="b" access="read"> \
-    </property> \
-     <property name="LidIsPresent" type="b" access="read"> \
-    </property> \
-    <signal name="DeviceAdded"> \
-        <arg type="o"/> \
-    </signal> \
-</interface> \
-</node>';
+const upowerInterface =
+    `<node>
 
+        <interface name="org.freedesktop.UPower">
+
+            <property name="OnBattery" type="b" access="read"/>
+
+            <property name="LidIsPresent" type="b" access="read"/>
+
+            <signal name="DeviceAdded">
+
+                <arg type="o"/>
+
+            </signal>
+
+        </interface> 
+        
+    </node>`;
 
 var UPowerClient = class UPowerClient extends DBusClient.DBusClient {
     constructor() {
-        super(upowerInterface, destination, objectPath);
+        super(Gio.DBus.system, upowerInterface, destination, objectPath);
     }
 
     get OnBattery() {
