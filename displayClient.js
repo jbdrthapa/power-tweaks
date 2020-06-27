@@ -3,8 +3,9 @@ const GLib = imports.gi.GLib;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.logger;
+const BaseClient = Me.imports.baseClient;
 
-const DBusClient = Me.imports.dbusClient;
+let _dbusProxy;
 
 const destination = "org.gnome.SettingsDaemon.Power";
 
@@ -35,37 +36,56 @@ const powerInterface =
     
     </node>`;
 
-
-var DisplayClient = class DisplayClient extends DBusClient.DBusClient {
+var DisplayClient = class DisplayClient extends BaseClient.BaseClient {
     constructor() {
-        super(Gio.DBus.session, powerInterface, destination, objectPath);
+
+        super();
+
+        _dbusProxy = this.GetDBusProxy(Gio.DBus.session, powerInterface, destination, objectPath);
+
+        _dbusProxy.connectSignal("Brightness", function () {
+
+            this.fireEvent("BrightnessChanged", {
+
+                Brightness: _dbusProxy.Brightness
+
+            });
+
+        });
     }
 
     StepUp() {
 
-        return this.Proxy.StepUpSync();
+        var stepUpRtn = _dbusProxy.StepUpSync();
+
+        this.fireEvent("BrightnessChanged", {
+
+            Brightness: _dbusProxy.Brightness
+
+        });
+
+        return stepUpRtn;
 
     }
 
     StepDown() {
 
-        return this.Proxy.StepDownSync();
+        var stepDownRtn = _dbusProxy.StepDownSync();
+
+        this.fireEvent("BrightnessChanged", {
+
+            Brightness: _dbusProxy.Brightness
+
+        });
+
+        return stepDownRtn;
 
     }
 
     get Brightness() {
 
-        return this.Proxy.Brightness;
+        return _dbusProxy.Brightness;
 
     }
 
 }
-
-// // Connecting to a D-Bus signal
-// this.Proxy.connectSignal("DeviceAdded", function (proxy) {
-//     let onBattery = proxy.OnBattery;
-//     Logger.logMsg("The system in on battery " + onBattery);
-// })
-
-// let loop = new GLib.MainLoop(null, false);
-// loop.run();

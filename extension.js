@@ -11,10 +11,12 @@ const PowerTweaks = Me.imports.powerTweaks;
 const Indicator = Me.imports.indicator;
 const UPowerClient = Me.imports.upowerClient;
 const DisplayClient = Me.imports.displayClient;
+const EventTarget = Me.imports.eventTarget;
 
 let _handle;
 let _mainIndicator;
 let _powerState;
+
 
 function OnPowerPropertiesChanged() {
 
@@ -56,7 +58,6 @@ function init() {
 
     Logger.logMsg(`Initializing ${Me.metadata.name} Version ${Me.metadata.version}`);
 
-
     Logger.logMsg("Application initialized");
 }
 
@@ -80,6 +81,14 @@ function enable() {
     //let [new_percentage, connector] = displayClient.StepUp();
 
     //Logger.logMsg(`New percentage : ${new_percentage} connected to : ${connector}`)
+
+    let listener1 = function (e) {
+        Logger.logMsg(`Brightness changed: ${e.Brightness}`);
+    }
+
+    displayClient.addListener("BrightnessChanged", listener1);
+
+    let [new_percentage, connector] = displayClient.StepUp();
 
     // Main indicator
     _mainIndicator = new Indicator.MainIndicator();

@@ -3,9 +3,9 @@ const GLib = imports.gi.GLib;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.logger;
+const BaseClient = Me.imports.baseClient;
 
-
-const DBusClient = Me.imports.dbusClient;
+let _dbusProxy;
 
 const destination = "org.freedesktop.UPower";
 
@@ -30,30 +30,25 @@ const upowerInterface =
         
     </node>`;
 
-var UPowerClient = class UPowerClient extends DBusClient.DBusClient {
+var UPowerClient = class UPowerClient extends BaseClient.BaseClient {
     constructor() {
-        super(Gio.DBus.system, upowerInterface, destination, objectPath);
+
+        super();
+
+        _dbusProxy = this.GetDBusProxy(Gio.DBus.system, upowerInterface, destination, objectPath);
+
     }
 
     get OnBattery() {
 
-        return this.Proxy.OnBattery;
+        return _dbusProxy.OnBattery;
 
     }
 
     get LidIsPresent() {
 
-        return this.Proxy.LidIsPresent;
+        return _dbusProxy.LidIsPresent;
 
     }
 
 }
-
-// // Connecting to a D-Bus signal
-// this.Proxy.connectSignal("DeviceAdded", function (proxy) {
-//     let onBattery = proxy.OnBattery;
-//     Logger.logMsg("The system in on battery " + onBattery);
-// })
-
-// let loop = new GLib.MainLoop(null, false);
-// loop.run();
