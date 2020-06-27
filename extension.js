@@ -86,7 +86,7 @@ function enable() {
         Logger.logMsg(`Brightness changed: ${e.Brightness}`);
     }
 
-    displayClient.addListener("BrightnessChanged", listener1);
+    displayClient.addListener(displayClient.Events.BrightnessChanged, listener1);
 
     let [new_percentage, connector] = displayClient.StepUp();
 

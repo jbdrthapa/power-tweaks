@@ -7,6 +7,11 @@ const BaseClient = Me.imports.baseClient;
 
 let _dbusProxy;
 
+const _eventsEnum = {
+
+    BrightnessChanged: "BrightnessChanged"
+}
+
 const destination = "org.gnome.SettingsDaemon.Power";
 
 const objectPath = "/org/gnome/SettingsDaemon/Power";
@@ -45,7 +50,7 @@ var DisplayClient = class DisplayClient extends BaseClient.BaseClient {
 
         _dbusProxy.connectSignal("Brightness", function () {
 
-            this.fireEvent("BrightnessChanged", {
+            this.fireEvent(_eventsEnum.BrightnessChanged, {
 
                 Brightness: _dbusProxy.Brightness
 
@@ -58,7 +63,7 @@ var DisplayClient = class DisplayClient extends BaseClient.BaseClient {
 
         var stepUpRtn = _dbusProxy.StepUpSync();
 
-        this.fireEvent("BrightnessChanged", {
+        this.fireEvent(_eventsEnum.BrightnessChanged, {
 
             Brightness: _dbusProxy.Brightness
 
@@ -72,7 +77,7 @@ var DisplayClient = class DisplayClient extends BaseClient.BaseClient {
 
         var stepDownRtn = _dbusProxy.StepDownSync();
 
-        this.fireEvent("BrightnessChanged", {
+        this.fireEvent(_eventsEnum.BrightnessChanged, {
 
             Brightness: _dbusProxy.Brightness
 
@@ -85,6 +90,12 @@ var DisplayClient = class DisplayClient extends BaseClient.BaseClient {
     get Brightness() {
 
         return _dbusProxy.Brightness;
+
+    }
+
+    get Events() {
+
+        return _eventsEnum;
 
     }
 
