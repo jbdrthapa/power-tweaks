@@ -3,9 +3,10 @@ const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
-const Logger = Me.imports.logger;
+const Logger = Me.imports.lib.logger;
+const Utilities = Me.imports.lib.utilities;
+
 const PowerTweaks = Me.imports.powerTweaks;
-const Utilities = Me.imports.utilities;
 const InfoMenuItem = Me.imports.infoMenuItem;
 const SettingMenuItem = Me.imports.settingMenuItem;
 

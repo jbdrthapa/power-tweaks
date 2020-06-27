@@ -4,9 +4,8 @@ const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 const Gtk = imports.gi.Gtk;
 
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Logger = Me.imports.logger;
+const Me = imports.misc.extensionUtils.getCurrentExtension();
+const Logger = Me.imports.lib.logger;
 
 function init() {
     Logger.logMsg(`Initializing ${Me.metadata.name} Preferences`);

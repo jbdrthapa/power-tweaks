@@ -10,7 +10,7 @@ const PopupMenu = imports.ui.popupMenu;
 const UserWidget = imports.ui.userWidget;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
-const Logger = Me.imports.logger;
+const Logger = Me.imports.lib.logger;
 
 const HostnameCommand = "hostname";
 const UptimeCommand = "uptime -p";

@@ -4,14 +4,15 @@ const Gio = imports.gi.Gio;
 const Main = imports.ui.main;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
-const Logger = Me.imports.logger;
-const Utilities = Me.imports.utilities;
-const Settings = Me.imports.settings;
+
+const Logger = Me.imports.lib.logger;
+const Utilities = Me.imports.lib.utilities;
+const Settings = Me.imports.lib.settings;
+const UPowerClient = Me.imports.lib.upowerClient;
+const DisplayClient = Me.imports.lib.displayClient;
+
 const PowerTweaks = Me.imports.powerTweaks;
 const Indicator = Me.imports.indicator;
-const UPowerClient = Me.imports.upowerClient;
-const DisplayClient = Me.imports.displayClient;
-const EventTarget = Me.imports.eventTarget;
 
 let _handle;
 let _mainIndicator;

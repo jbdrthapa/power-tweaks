@@ -5,8 +5,8 @@ const UPower = imports.gi.UPowerGlib;
 const Main = imports.ui.main;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
-const Utilities = Me.imports.utilities;
-const Logger = Me.imports.logger;
+const Utilities = Me.imports.lib.utilities;
+const Logger = Me.imports.lib.logger;
 
 let _animationsOriginalState;
 let _cursorBlinkOriginalState;
@@ -82,8 +82,6 @@ function getMainButtonIcon() {
     let icon = new St.Icon({ style_class: 'system-status-icon' });
 
     let iconPath = `${Me.path}${iconImageRelativePath}`;
-
-    Logger.logMsg(`Icon Path: ${iconPath}`);
 
     icon.gicon = Gio.icon_new_for_string(iconPath);
 
