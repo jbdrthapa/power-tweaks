@@ -11,8 +11,8 @@ const Settings = Me.imports.lib.settings;
 const UPowerClient = Me.imports.lib.upowerClient;
 const DisplayClient = Me.imports.lib.displayClient;
 
-const PowerTweaks = Me.imports.powerTweaks;
-const Indicator = Me.imports.indicator;
+const PowerTweaks = Me.imports.components.powerTweaks;
+const Indicator = Me.imports.components.indicator;
 
 let _handle;
 let _mainIndicator;

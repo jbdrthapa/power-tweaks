@@ -7,7 +7,7 @@ const Lang = imports.lang;
 const PopupMenu = imports.ui.popupMenu;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
-const PowerTweaks = Me.imports.powerTweaks;
+const PowerTweaks = Me.imports.components.powerTweaks;
 
 var SettingMenuItem = GObject.registerClass(class SettingMenuItem extends PopupMenu.PopupSwitchMenuItem {
 

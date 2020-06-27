@@ -6,9 +6,9 @@ const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.lib.logger;
 const Utilities = Me.imports.lib.utilities;
 
-const PowerTweaks = Me.imports.powerTweaks;
-const InfoMenuItem = Me.imports.infoMenuItem;
-const SettingMenuItem = Me.imports.settingMenuItem;
+const PowerTweaks = Me.imports.components.powerTweaks;
+const InfoMenuItem = Me.imports.components.infoMenuItem;
+const SettingMenuItem = Me.imports.components.settingMenuItem;
 
 let _buttonIcon;
 let _itemEnableAnimations;
