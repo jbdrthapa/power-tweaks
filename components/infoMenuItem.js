@@ -40,8 +40,6 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
 
         displayClient = new DisplayClient.DisplayClient();
 
-        displayClient.addListener(displayClient.Events.BrightnessChanged, this._onBrightnessChanged);
-
         _mainBox = new St.BoxLayout({ vertical: true, width: 300, height: 400 });
 
         this.add_child(_mainBox);
@@ -71,7 +69,9 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
     /* Execute command and return the output of the command run */
 
     _executeCommand(command) {
+
         return imports.byteArray.toString(GLib.spawn_command_line_sync(command)[1]);
+
     }
 
     /* Create header */
@@ -108,8 +108,11 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
     /* Get control from a layout using index */
 
     _getControlFromLayout(layout, index) {
+
         let uptimeInfoChildren = layout.get_children();
+
         return uptimeInfoChildren[index];
+
     }
 
     /* Refresh hostname */
@@ -134,17 +137,42 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
 
     /* Refresh the system brightness data */
 
+    _getBrightnessValue() {
+
+        let brightnessValue = "...";
+
+        if (displayClient.Brightness) {
+
+            let brightness = displayClient.Brightness;
+
+            // When built-in display is turned off
+            if (brightness === -1) {
+
+                brightnessValue = "Off"
+
+            }
+
+            else {
+
+                brightnessValue = `${brightness} %`;
+
+            }
+
+        }
+
+        return brightnessValue;
+
+    }
+
     _onBrightnessChanged(e) {
 
-        this._getControlFromLayout(_brightnessInfoBox, 1).set_text(`${e.Brightness.toString()} %`);
+        this._refreshBrightness();
 
     }
 
     _refreshBrightness() {
 
-        _brightness = displayClient.Brightness;
-
-        this._getControlFromLayout(_brightnessInfoBox, 1).set_text(`${_brightness.toString()} %`);
+        this._getControlFromLayout(_brightnessInfoBox, 1).set_text(this._getBrightnessValue());
 
     }
 
