@@ -75,21 +75,10 @@ function enable() {
 
     Logger.logMsg(`System Lid is present: ${upowerClient.LidIsPresent}`);
 
-    var displayClient = new DisplayClient.DisplayClient();
-
-    Logger.logMsg(`System Brightness: ${displayClient.Brightness}`);
-
     //let [new_percentage, connector] = displayClient.StepUp();
 
     //Logger.logMsg(`New percentage : ${new_percentage} connected to : ${connector}`)
 
-    let listener1 = function (e) {
-        Logger.logMsg(`Brightness changed: ${e.Brightness}`);
-    }
-
-    displayClient.addListener(displayClient.Events.BrightnessChanged, listener1);
-
-    let [new_percentage, connector] = displayClient.StepUp();
 
     // Main indicator
     _mainIndicator = new Indicator.MainIndicator();

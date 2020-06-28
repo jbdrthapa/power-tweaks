@@ -11,16 +11,20 @@ const UserWidget = imports.ui.userWidget;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Logger = Me.imports.lib.logger;
+const DisplayClient = Me.imports.lib.displayClient;
 
 const HostnameCommand = "hostname";
 const UptimeCommand = "uptime -p";
 
+let displayClient;
 let _mainBox;
 let _headerBox
 let _uptimeInfoBox;
+let _brightnessInfoBox;
 let _avatar;
 let _hostname;
 let _uptime;
+let _brightness;
 
 var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.PopupBaseMenuItem {
 
@@ -33,6 +37,10 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
             hover: false,
             can_focus: false,
         });
+
+        displayClient = new DisplayClient.DisplayClient();
+
+        displayClient.addListener(displayClient.Events.BrightnessChanged, this._onBrightnessChanged);
 
         _mainBox = new St.BoxLayout({ vertical: true, width: 300, height: 400 });
 
@@ -53,6 +61,8 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
         this._refreshHostname();
 
         this._refreshUptime();
+
+        this._refreshBrightness();
 
         _avatar.update();
 
@@ -77,6 +87,11 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
         _uptimeInfoBox.add(new St.Label({ text: "Uptime ", style_class: "info-label-style" }));
         _uptimeInfoBox.add(new St.Label());
 
+        // System Brightness
+        _brightnessInfoBox = new St.BoxLayout();
+        _brightnessInfoBox.add(new St.Label({ text: "Brightness ", style_class: "info-label-style" }));
+        _brightnessInfoBox.add(new St.Label());
+
         // User Avatar Icon
         let userManager = AccountsService.UserManager.get_default();
         userManager.list_users();
@@ -87,6 +102,7 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
 
         _mainBox.add(_headerBox);
         _mainBox.add(_uptimeInfoBox);
+        _mainBox.add(_brightnessInfoBox);
     }
 
     /* Get control from a layout using index */
@@ -113,6 +129,22 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
         _uptime = this._executeCommand(UptimeCommand).replace("up ", "");
 
         this._getControlFromLayout(_uptimeInfoBox, 1).set_text(_uptime);
+
+    }
+
+    /* Refresh the system brightness data */
+
+    _onBrightnessChanged(e) {
+
+        this._getControlFromLayout(_brightnessInfoBox, 1).set_text(`${e.Brightness.toString()} %`);
+
+    }
+
+    _refreshBrightness() {
+
+        _brightness = displayClient.Brightness;
+
+        this._getControlFromLayout(_brightnessInfoBox, 1).set_text(`${_brightness.toString()} %`);
 
     }
 
