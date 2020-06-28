@@ -71,11 +71,11 @@ function getMainButtonIcon() {
 
     if (getPowerState() === PowerStates.AC) {
 
-        iconImageRelativePath = '/icons/charging_24.png';
+        iconImageRelativePath = '/icons/charging.png';
     }
     else {
 
-        iconImageRelativePath = '/icons/battery_24.png';
+        iconImageRelativePath = '/icons/battery.png';
 
     }
 

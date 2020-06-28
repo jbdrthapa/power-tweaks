@@ -1,46 +1,409 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 400.174 400.174" style="enable-background:new 0 0 400.174 400.174;" xml:space="preserve">
-<path style="fill:#45B549;" d="M201.38,88.422c113.12-12.44,149.88-84,150-84c1.856-3.567,6.252-4.953,9.819-3.097
-	c1.799,0.936,3.126,2.581,3.661,4.537c37.6,127.52,17.08,215.44-26.08,267.6c-16.709,20.331-38.11,36.296-62.36,46.52
-	c-22.339,9.474-46.587,13.584-70.8,12c-46.36-3.24-88.68-28-108.32-72.36c-5.032-11.34-8.284-23.388-9.64-35.72
-	c-2.743-24.717,2.083-49.685,13.84-71.6c12.622-23.385,32.719-41.863,57.08-52.48C172.173,93.833,186.611,89.988,201.38,88.422
-	L201.38,88.422z"/>
-<path style="fill:#009549;" d="M350.58,7.102c0.099-4.019,3.437-7.198,7.456-7.099c4.019,0.099,7.198,3.437,7.099,7.456
-	c-0.007,0.296-0.033,0.59-0.076,0.883c0,0.36-6.36,84-88,168.64l-0.76,0.8c-19.18,19.673-40.226,37.436-62.84,53.04l49.04,9.12
-	c3.909,0.943,6.313,4.876,5.37,8.784c-0.854,3.538-4.189,5.902-7.81,5.536l-64-12c-58.36,36.96-157.28,71.08-165.92,151.6
-	c-0.535,3.985-4.199,6.782-8.184,6.247c-3.793-0.509-6.544-3.868-6.296-7.687c10.32-96.52,108.4-121.36,174.56-163.56l0.92-0.6
-	c26.403-16.71,50.861-36.311,72.92-58.44l-5.8-57.4c-0.535-3.985,2.262-7.649,6.247-8.184s7.649,2.262,8.184,6.247
-	c0.022,0.165,0.039,0.331,0.049,0.497l4.4,44.56C345.18,79.142,350.54,7.422,350.58,7.102L350.58,7.102z"/>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="6.29"
+   inkscape:export-xdpi="6.29"
+   inkscape:export-filename="/home/jamir/.local/share/gnome-shell/extensions/power-tweaks@jbdrthapa.github.com/icons/charging_24.png"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="battery.svg">
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient4734"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#ffa705;stop-opacity:1;"
+         offset="0"
+         id="stop4732" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3917-0-9">
+      <stop
+         id="stop4529"
+         offset="0"
+         style="stop-color:#ff4b00;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3917-0">
+      <stop
+         id="stop4526"
+         offset="0"
+         style="stop-color:#ff4b00;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3917">
+      <stop
+         id="stop4523"
+         offset="0"
+         style="stop-color:#ff4b00;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4315"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#00ffff;stop-opacity:1;"
+         offset="0"
+         id="stop4313" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4135"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#5ddbff;stop-opacity:1;"
+         offset="0"
+         id="stop4133" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4127"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#00c7e0;stop-opacity:1;"
+         offset="0"
+         id="stop4125" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4013"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#ff7c00;stop-opacity:1;"
+         offset="0"
+         id="stop4011" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3917-0-9-3">
+      <stop
+         style="stop-color:#ff4b00;stop-opacity:1;"
+         offset="0"
+         id="stop3915" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3893"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#ff8000;stop-opacity:1;"
+         offset="0"
+         id="stop3891" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3885">
+      <stop
+         style="stop-color:#ff8000;stop-opacity:1;"
+         offset="0"
+         id="stop3883" />
+    </linearGradient>
+    <filter
+       height="1.0550513"
+       y="-0.027525669"
+       width="1.0947248"
+       x="-0.047362387"
+       id="filter3028"
+       inkscape:label="Drop Shadow"
+       style="color-interpolation-filters:sRGB;">
+      <feFlood
+         id="feFlood3018"
+         result="flood"
+         flood-color="rgb(255,255,255)"
+         flood-opacity="1" />
+      <feComposite
+         id="feComposite3020"
+         result="composite1"
+         operator="in"
+         in2="SourceGraphic"
+         in="flood" />
+      <feGaussianBlur
+         id="feGaussianBlur3022"
+         result="blur"
+         stdDeviation="0.63634487"
+         in="composite1" />
+      <feOffset
+         id="feOffset3024"
+         result="offset"
+         dy="-0.626952"
+         dx="-0.425463" />
+      <feComposite
+         id="feComposite3026"
+         result="composite2"
+         operator="over"
+         in2="offset"
+         in="SourceGraphic" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Blur"
+       id="filter1107">
+      <feGaussianBlur
+         stdDeviation="0.51 0.61"
+         result="fbSourceGraphic"
+         id="feGaussianBlur1105" />
+      <feColorMatrix
+         result="fbSourceGraphicAlpha"
+         in="fbSourceGraphic"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         id="feColorMatrix1121" />
+      <feGaussianBlur
+         id="feGaussianBlur1123"
+         stdDeviation="0.11 0.11"
+         result="blur"
+         in="fbSourceGraphic" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Blur"
+       id="filter1111">
+      <feGaussianBlur
+         stdDeviation="0.51 0.61"
+         result="fbSourceGraphic"
+         id="feGaussianBlur1109" />
+      <feColorMatrix
+         result="fbSourceGraphicAlpha"
+         in="fbSourceGraphic"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         id="feColorMatrix1125" />
+      <feGaussianBlur
+         id="feGaussianBlur1127"
+         stdDeviation="0.11 0.11"
+         result="blur"
+         in="fbSourceGraphic" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Blur"
+       id="filter1115">
+      <feGaussianBlur
+         stdDeviation="0.51 0.61"
+         result="fbSourceGraphic"
+         id="feGaussianBlur1113" />
+      <feColorMatrix
+         result="fbSourceGraphicAlpha"
+         in="fbSourceGraphic"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         id="feColorMatrix1129" />
+      <feGaussianBlur
+         id="feGaussianBlur1131"
+         stdDeviation="0.11 0.11"
+         result="blur"
+         in="fbSourceGraphic" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Blur"
+       id="filter1119">
+      <feGaussianBlur
+         stdDeviation="0.51 0.61"
+         result="fbSourceGraphic"
+         id="feGaussianBlur1117" />
+      <feColorMatrix
+         result="fbSourceGraphicAlpha"
+         in="fbSourceGraphic"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         id="feColorMatrix1133" />
+      <feGaussianBlur
+         id="feGaussianBlur1135"
+         stdDeviation="0.11 0.11"
+         result="blur"
+         in="fbSourceGraphic" />
+    </filter>
+    <filter
+       height="1.0695882"
+       y="-0.034794107"
+       width="1.0182204"
+       x="-0.0091101862"
+       id="filter1302"
+       style="color-interpolation-filters:sRGB"
+       inkscape:collect="always">
+      <feGaussianBlur
+         id="feGaussianBlur1304"
+         stdDeviation="0.12915139"
+         inkscape:collect="always" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1302-3"
+       x="-0.0091101862"
+       width="1.0182204"
+       y="-0.034794107"
+       height="1.0695882">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.12915139"
+         id="feGaussianBlur1304-6" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1302-5"
+       x="-0.0091101862"
+       width="1.0182204"
+       y="-0.034794107"
+       height="1.0695882">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.12915139"
+         id="feGaussianBlur1304-3" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1302-6"
+       x="-0.0091101862"
+       width="1.0182204"
+       y="-0.034794107"
+       height="1.0695882">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.12915139"
+         id="feGaussianBlur1304-2" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1302-1"
+       x="-0.0091101862"
+       width="1.0182204"
+       y="-0.034794107"
+       height="1.0695882">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.12915139"
+         id="feGaussianBlur1304-27" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="187.34849"
+     inkscape:cy="563.63199"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="1107"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       inkscape:export-ydpi="6.29"
+       inkscape:export-xdpi="6.29"
+       inkscape:export-filename="/home/jamir/.local/share/gnome-shell/extensions/power-tweaks@jbdrthapa.github.com/icons/charging_24.png"
+       style="opacity:0.0105773;fill:#666666;fill-opacity:0.932039;stroke-width:0.303949"
+       id="rect844"
+       width="110"
+       height="110"
+       x="55.441322"
+       y="77.48175"
+       ry="55" />
+    <rect
+       ry="2.7828145"
+       y="87.574631"
+       x="96.658356"
+       height="15.048856"
+       width="26.154652"
+       id="rect3929-6"
+       style="opacity:1;fill:#f2f2f2;fill-opacity:1;stroke-width:0.677767" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke-width:0.43812"
+       id="rect3929"
+       width="18.65069"
+       height="8.8182268"
+       x="99.883896"
+       y="92.9739"
+       ry="1.6306549" />
+    <rect
+       ry="1.2706409"
+       y="101.1058"
+       x="84.951469"
+       height="77.613937"
+       width="50.59832"
+       id="rect3921-3"
+       style="opacity:1;fill:#f2f2f2;fill-opacity:1;stroke-width:0.376126" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke-width:0.303771"
+       id="rect3921"
+       width="39.233559"
+       height="65.289017"
+       x="89.441742"
+       y="105.96446"
+       ry="1.068866" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 160.37103,98.612273 v 0"
+       id="path904"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <rect
+       ry="0.69721657"
+       y="109.24433"
+       x="92.111908"
+       height="8.9085007"
+       width="34.023819"
+       id="rect884"
+       style="fill:#00ff00;stroke-width:0.264999;filter:url(#filter1302)" />
+    <rect
+       style="fill:#00ff00;stroke-width:0.264999;filter:url(#filter1302-3)"
+       id="rect884-7"
+       width="34.023819"
+       height="8.9085007"
+       x="92.062584"
+       y="121.48738"
+       ry="0.69721657" />
+    <rect
+       style="fill:#00ff00;stroke-width:0.264999;filter:url(#filter1302-5)"
+       id="rect884-5"
+       width="34.023819"
+       height="8.9085007"
+       x="91.885193"
+       y="133.4771"
+       ry="0.69721657" />
+    <rect
+       style="fill:#00ff00;stroke-width:0.264999;filter:url(#filter1302-6)"
+       id="rect884-9"
+       width="34.023819"
+       height="8.9085007"
+       x="91.932777"
+       y="145.50354"
+       ry="0.69721657" />
+    <rect
+       style="fill:#00ff00;stroke-width:0.264999;filter:url(#filter1302-1)"
+       id="rect884-0"
+       width="34.023819"
+       height="8.9085007"
+       x="91.800484"
+       y="157.36588"
+       ry="0.69721657" />
+  </g>
 </svg>
