@@ -40,6 +40,8 @@ var InfoMenuItem = GObject.registerClass(class InfoMenuItem extends PopupMenu.Po
 
         displayClient = new DisplayClient.DisplayClient();
 
+        displayClient.addListener(displayClient.Events.BrightnessChanged, this._onBrightnessChanged);
+
         _mainBox = new St.BoxLayout({ vertical: true, width: 300, height: 400 });
 
         this.add_child(_mainBox);
