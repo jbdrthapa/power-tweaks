@@ -84,7 +84,7 @@ function enable() {
     _mainIndicator = new Indicator.MainIndicator();
 
     // Refresh all data
-    _mainIndicator.connect('button-press-event', _refreshAllData);
+    _mainIndicator.connect('button-press-event', OnIndicatorDisplayChanged);
 
     // Add main indicator to the center box
     Main.panel._addToPanelBox('MainIndicator', _mainIndicator, 1, Main.panel._centerBox);
@@ -112,7 +112,16 @@ function disable() {
 
 }
 
-function _refreshAllData() {
+function OnIndicatorDisplayChanged() {
+
+    if (_mainIndicator.IsActive) {
+        Logger.logMsg("====> Menu opened");
+    }
+    else {
+        Logger.logMsg("====> Menu closed");
+    }
+
+
 
     _mainIndicator.refreshInfoUI();
 

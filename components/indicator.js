@@ -15,6 +15,7 @@ let _itemEnableAnimations;
 let _itemCursorBlink;
 let _itemClockShowSeconds;
 let _infoMenu;
+let _isActive;
 
 var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.Button {
 
@@ -31,6 +32,21 @@ var MainIndicator = GObject.registerClass(class MainIndicator extends PanelMenu.
         // Populated menu items
         this.populateMenuItems();
 
+        _isActive = false;
+
+        this.menu.connect('open-state-changed', this.OnOpenStateChanged);
+
+    }
+
+    OnOpenStateChanged() {
+
+        _isActive = !_isActive;
+
+    }
+
+    get IsActive() {
+
+        return _isActive;
     }
 
     populateMenuItems() {
